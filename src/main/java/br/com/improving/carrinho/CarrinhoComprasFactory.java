@@ -1,8 +1,6 @@
 package br.com.improving.carrinho;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Classe responsável pela criação e recuperação dos carrinhos de compras.
@@ -13,10 +11,7 @@ import java.util.Map;
  */
 public class CarrinhoComprasFactory {
 
-    private Map<String, CarrinhoCompras> cliente;
-
     public CarrinhoComprasFactory() {
-        this.cliente = new HashMap<>();
     }
 
     /**
@@ -28,9 +23,7 @@ public class CarrinhoComprasFactory {
      * @return CarrinhoCompras
      */
     public CarrinhoCompras criar(String identificacaoCliente) {
-        CarrinhoCompras carrinho = new CarrinhoCompras();
-        cliente.put(identificacaoCliente, carrinho);
-        return new CarrinhoCompras();
+
     }
 
     /**

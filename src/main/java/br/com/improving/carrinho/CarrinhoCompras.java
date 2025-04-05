@@ -2,20 +2,12 @@ package br.com.improving.carrinho;
 
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Classe que representa o carrinho de compras de um cliente.
  */
 public class CarrinhoCompras {
-
-    private ArrayList<Item> itens;
-    private String cliente;
-
-    CarrinhoCompras() {
-        this.itens = new ArrayList<>();
-    }
 
     /**
      * Permite a adição de um novo item no carrinho de compras.
@@ -32,26 +24,7 @@ public class CarrinhoCompras {
      * @param quantidade
      */
     public void adicionarItem(Produto produto, BigDecimal valorUnitario, int quantidade) {
-        if (produto == null || valorUnitario == null || quantidade < 0) {
-            throw new IllegalArgumentException("Parâmetros inválidos para adicionar item.");
-        }
 
-        for (int i = 0; i < itens.size(); i++) {
-            Item item = itens.get(i);
-
-            if (item.getProduto().equals(produto)) {
-                // Se já existe o item, atualiza quantidade e valorUnitario se for diferente
-                int novaQuantidade = item.getQuantidade() + quantidade;
-                BigDecimal novoValor = valorUnitario;
-
-                // Atualiza o item na lista
-                itens.set(i, new Item(produto, novoValor, novaQuantidade));
-                return;
-            }
-        }
-
-        // Se não encontrou, adiciona novo item
-        itens.add(new Item(produto, valorUnitario, quantidade));
     }
 
     /**
@@ -62,7 +35,7 @@ public class CarrinhoCompras {
      * caso o produto não exista no carrinho.
      */
     public boolean removerItem(Produto produto) {
-        return itens.removeIf(item -> item.getProduto().equals(produto));
+
     }
 
     /**
@@ -75,12 +48,7 @@ public class CarrinhoCompras {
      * caso o produto não exista no carrinho.
      */
     public boolean removerItem(int posicaoItem) {
-        if (posicaoItem < 0 || posicaoItem >= itens.size()) {
-            return false;
-        }
 
-        itens.remove(posicaoItem);
-        return true;
     }
 
     /**
@@ -90,13 +58,7 @@ public class CarrinhoCompras {
      * @return BigDecimal
      */
     public BigDecimal getValorTotal() {
-        BigDecimal total = BigDecimal.ZERO;
 
-        for (Item item : itens) {
-            total = total.add(item.getValorTotal());
-        }
-
-        return total;
     }
 
     /**
@@ -105,6 +67,6 @@ public class CarrinhoCompras {
      * @return itens
      */
     public Collection<Item> getItens() {
-        return itens;
+
     }
 }
